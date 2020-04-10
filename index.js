@@ -19,7 +19,7 @@ exports.handler = function(event, context) {
     headers += "Reply-To: "+msgInfo.mail.commonHeaders.from[0]+"\r\n";
     headers += "X-Original-To: "+msgInfo.mail.commonHeaders.to[0]+"\r\n";
     //We show the original recipient in the to. This is ok, because the mail envelope contains the real destination.
-    headers += "To: "+msgInfo.mail.commonHeaders.to[0]+"\r\n";
+    headers += "To: "+msgInfo.mail.commonHeaders.to+"\r\n";
     headers += "Subject: "+msgInfo.mail.commonHeaders.subject+"\r\n";
     
     console.log(headers);
@@ -55,8 +55,7 @@ exports.handler = function(event, context) {
     else {
         email = headers+"\r\n"+"Empty email";
     }
-
-console.log(email);
+    console.log(headers);
 var params = {
     RawMessage: { Data: email },
     Destinations: [ forwardTo ],
